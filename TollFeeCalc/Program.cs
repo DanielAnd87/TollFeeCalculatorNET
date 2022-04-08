@@ -12,11 +12,10 @@ namespace TollFeeCalculatorNET_original
     {
         static void Main(string[] args)
         {
-            TestFees();
-            //TestDates2022();
+            PrintFees();
         }
 
-        static void TestFees()
+        static void PrintFees()
         {
             DateTime start = new DateTime(2012, 10, 25, 7, 26, 50);
             DateTime middle = new DateTime(2012, 10, 25, 13, 30, 50);
@@ -28,28 +27,6 @@ namespace TollFeeCalculatorNET_original
             TollCalculator calculator = new TollCalculator();
             int feeResult = calculator.GetTollFee(car, parkingPeriod);
             Console.WriteLine(feeResult);
-        }
-
-        static void TestDates2022()
-        {
-            Holidays holidays = new Holidays();
-            List<DateTime> holidaysList = holidays.GetYear(2022);
-            holidaysList.Sort();
-            DateTime date = new DateTime(2012, 12, 25, 7, 26, 50);
-            List<DateTime> filteredHolidays = new List<DateTime>();
-            foreach (DateTime dateTime in holidaysList)
-            {
-                if (dateTime.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday)
-                {
-                }
-                else
-                {
-                    filteredHolidays.Add(dateTime);
-                }
-            }
-
-            bool exist = holidaysList.Any(d => d.Month == date.Month && d.Day == date.Day);
-            Console.WriteLine(exist);
         }
     }
 }
